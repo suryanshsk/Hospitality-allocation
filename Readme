@@ -1,0 +1,201 @@
+# Hospitality Allocation Web Application
+
+## Overview
+
+This project aims to digitalize the hospitality process for group accommodations by providing an efficient room allocation system. The application allows users to upload CSV files containing group and hostel information and automatically allocates rooms while ensuring that group members stay together, respecting hostel capacities, and maintaining gender-specific accommodations.
+
+## Features
+
+- Upload CSV files for group and hostel information.
+- Automated room allocation algorithm.
+- Ensure group members with the same ID stay together.
+- Respect room capacities and gender-specific accommodations.
+- View room allocation results on the interface.
+- Download the room allocation details as a CSV file.
+
+## Technologies Used
+
+- **Frontend:** React.js
+- **Backend:** Node.js with Express.js
+- **CSV Parsing:** csv-parser, json2csv
+- **File Upload:** Multer
+
+## Project Structure
+
+```
+hospitality-allocation/
+├── backend/
+│   ├── controllers/
+│   │   ├── allocationController.js
+│   ├── routes/
+│   │   ├── fileRoutes.js
+│   ├── uploads/
+│   ├── app.js
+│   ├── package.json
+│   └── README.md
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── FileUpload.js
+│   │   │   ├── ResultDisplay.js
+│   │   ├── App.js
+│   │   ├── index.js
+│   ├── package.json
+│   └── README.md
+├── README.md
+└── .gitignore
+```
+
+## Setup Instructions
+
+### Prerequisites
+
+- Node.js installed on your machine.
+- Git for version control.
+
+### Backend Setup
+
+1. Navigate to the `backend` directory:
+
+    ```bash
+    cd backend
+    ```
+
+2. Install the dependencies:
+
+    ```bash
+    npm install
+    ```
+
+3. Start the server:
+
+    ```bash
+    node app.js
+    ```
+
+4. The server will be running on `http://localhost:5000`.
+
+### Frontend Setup
+
+1. Navigate to the `frontend` directory:
+
+    ```bash
+    cd frontend
+    ```
+
+2. Install the dependencies:
+
+    ```bash
+    npm install
+    ```
+
+3. Start the React application:
+
+    ```bash
+    npm start
+    ```
+
+4. The application will be available at `http://localhost:3000`.
+
+## Usage
+
+1. **Upload CSV Files:**
+   - Use the interface to upload two CSV files: one for group information and one for hostel information.
+
+2. **View Allocation Results:**
+   - After uploading, the application will display the allocated rooms and group members in a tabular format.
+
+3. **Download CSV File:**
+   - You can download the CSV file containing the allocation details directly from the interface.
+
+## Project Components
+
+### Backend
+
+#### `backend/app.js`
+
+- Initializes the Express server.
+- Configures middleware and routes.
+
+#### `backend/routes/fileRoutes.js`
+
+- Defines the API endpoint for uploading files.
+
+#### `backend/controllers/allocationController.js`
+
+- Handles the logic for parsing CSV files and allocating rooms.
+
+### Frontend
+
+#### `frontend/src/components/FileUpload.js`
+
+- Component for uploading CSV files.
+
+#### `frontend/src/components/ResultDisplay.js`
+
+- Component for displaying the allocation results.
+
+#### `frontend/src/App.js`
+
+- Main application component that ties everything together.
+
+#### `frontend/src/index.js`
+
+- Entry point for the React application.
+
+## Example CSV Format
+
+### Group Information (CSV File 1)
+
+```csv
+Group ID, Members, Gender
+101, 3, Boys
+102, 4, Girls
+103, 2, Boys
+104, 5, Girls
+105, 8, 5 Boys & 3 Girls
+```
+
+### Hostel Information (CSV File 2)
+
+```csv
+Hostel Name, Room Number, Capacity, Gender
+Boys Hostel A, 101, 3, Boys
+Boys Hostel A, 102, 4, Boys
+Girls Hostel B, 201, 2, Girls
+Girls Hostel B, 202, 5, Girls
+```
+
+## Example Output
+
+After uploading the CSV files, you will see a table like this:
+
+| Group ID | Hostel Name    | Room Number | Members Allocated |
+|----------|----------------|-------------|-------------------|
+| 101      | Boys Hostel A  | 101         | 3                 |
+| 102      | Girls Hostel B | 202         | 4                 |
+| 103      | Boys Hostel A  | 102         | 2                 |
+| 104      | Girls Hostel B | 202         | 5                 |
+
+## Allocation Algorithm
+
+1. **Reading Data:**
+   - Parse CSV files into JavaScript objects representing groups and hostels.
+
+2. **Allocation Logic:**
+   - Iterate through groups and allocate them to available rooms based on capacity and gender.
+
+3. **Edge Case Handling:**
+   - Ensure that no room exceeds capacity and that boys and girls are allocated to their respective hostels.
+
+
+## License
+
+This project is licensed under the MIT License.
+
+## Contact
+
+For any questions or issues, please contact:
+Instagram: https://www.instagram.com/suryanshsk
+LinkedIn : https://www.linkedin.com/in/avanishsinghengineer
